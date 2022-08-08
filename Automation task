@@ -1,0 +1,69 @@
+package com.shopapotheke;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
+
+public class PositiveTest {
+
+	@Test
+	public void loginTest() {
+
+		System.out.println("Start login test");
+
+		// create driver
+		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+
+		System.out.println("Open the browser");
+		WebDriver driver = new ChromeDriver();
+		
+//		WebDriver driver = new FirefoxDriver();
+		
+		
+		// maximize browser
+		driver.manage().window().maximize();
+
+		sleep(1000);
+
+		// enter the url
+		String url = "https://www.shop-apotheke.com/nx/login/";
+		driver.get(url);
+
+		sleep(3000);
+
+		// enter username
+		WebElement username = driver.findElement(By.xpath("/html//input[@id='loginForm-eMail']"));
+		username.sendKeys("123456789");
+
+		sleep(3000);
+
+		// enter password
+		WebElement password = driver.findElement(By.xpath("/html//input[@id='loginForm-password']"));
+		password.sendKeys("SuperSecretPassword!");
+
+		sleep(3000);
+
+		// click on login button
+		WebElement logInButton = driver.findElement(By.xpath("/html//button[@id='login-submit-btn']"));
+		logInButton.click();
+
+		sleep(3000);
+
+		// close the browser
+		driver.close();
+
+	}
+
+	private void sleep(long n) {
+		try {
+			Thread.sleep(n);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
